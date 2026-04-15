@@ -112,19 +112,20 @@ function renderTimetable() {
     row.className = `task-row ${task.status}`;
     row.id = `task-row-${task.id}`;
 
-    const badgeClass = {
-      active:    'badge-active',
-      pending:   'badge-pending',
-      completed: 'badge-completed',
-      missed:    'badge-missed'
-    }[task.status] || 'badge-pending';
+    const badgeClass = task.status;
 
-    const badgeLabel = task.status.toUpperCase();
+    const badgeLabel = {
+      active:    'in progress',
+      pending:   '',
+      completed: 'done ✓',
+      missed:    'missed'
+    }[task.status] || '';
 
     row.innerHTML = `
+      <div class="task-dot"></div>
       <div class="task-time">${task.start} – ${task.end}</div>
       <div class="task-name">${task.name}</div>
-      <span class="task-badge ${badgeClass}">${badgeLabel}</span>
+      <span class="task-status-text">${badgeLabel}</span>
     `;
     $timetable.appendChild(row);
 
@@ -132,7 +133,7 @@ function renderTimetable() {
     if (i < schedule.length - 1) {
       const brk = document.createElement('div');
       brk.className = 'break-row';
-      brk.textContent = '· · · 10 min break · · ·';
+      brk.innerHTML = '<span class="break-label">10 min break</span>';
       $timetable.appendChild(brk);
     }
   });
@@ -248,20 +249,21 @@ function showEndOfDaySummary() {
 
   $summaryContent.innerHTML = `
     <div class="summary-grid" style="margin-bottom:1rem">
-      <div class="summary-stat"><div class="num">${completed.length}</div><div class="lbl">Completed</div></div>
-      <div class="summary-stat"><div class="num">${missed.length}</div><div class="lbl">Missed</div></div>
+      <div class="summary-stat"><div class="num">${completed.length}</div><div class="lbl">done</div></div>
+      <div class="summary-stat"><div class="num">${missed.length}</div><div class="lbl">missed</div></div>
     </div>
-    <div class="summary-grid">
+    <div class="summary-grid" style="margin-bottom:1rem">
       <div class="summary-box">
-        <h3>✅ Completed</h3>
-        <ul>${completed.length ? completed.map(t => `<li class="done">• ${t.name}</li>`).join('') : '<li style="color:var(--muted)">None</li>'}</ul>
+        <h3>Completed</h3>
+        <ul>${completed.length ? completed.map(t => `<li class="done">✓ ${t.name}</li>`).join('') : '<li style="color:var(--muted)">—</li>'}</ul>
       </div>
       <div class="summary-box">
-        <h3>❌ Missed</h3>
-        <ul>${missed.length ? missed.map(t => `<li class="miss">• ${t.name}</li>`).join('') : '<li style="color:var(--muted)">None — perfect day!</li>'}</ul>
+        <h3>Missed</h3>
+        <ul>${missed.length ? missed.map(t => `<li class="miss">${t.name}</li>`).join('') : '<li style="color:var(--green)">Nothing — great day!</li>'}</ul>
       </div>
     </div>
-    <p style="margin-top:1rem;color:var(--muted);font-size:0.85rem">Completion rate: <strong style="color:var(--gold)">${pct}%</strong></p>
+    <div class="completion-bar-wrap"><div class="completion-bar" style="width:${pct}%"></div></div>
+    <p class="completion-text">You completed <strong>${pct}%</strong> of your day.</p>
   `;
 
   $summaryCard.classList.remove('hidden');

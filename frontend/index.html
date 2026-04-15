@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Task Scheduler</title>
+  <title>My Day — DTS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,8 +14,8 @@
   <!-- ── HEADER ── -->
   <header>
     <div class="header-left">
-      <span class="logo">⬡ DTS</span>
-      <span class="tagline">Daily Task Scheduler</span>
+      <span class="logo">DTS</span>
+      <span class="tagline">daily task scheduler</span>
     </div>
     <div class="header-right">
       <span id="clock">00:00:00</span>
@@ -25,12 +28,12 @@
 
     <!-- INPUT PANEL -->
     <section id="input-panel" class="card">
-      <h2>📋 Enter Today's Tasks</h2>
-      <p class="hint">One task per line · Max 8 tasks · Each slot = 1 hour</p>
-      <textarea id="task-input" placeholder="Study control systems&#10;Work on website&#10;Exercise&#10;Read a book" rows="8"></textarea>
+      <h2>What's on your plate today?</h2>
+      <p class="hint">Add up to 8 tasks — one per line. I'll space them out with short breaks in between.</p>
+      <textarea id="task-input" placeholder="Study for the exam&#10;Work on the website&#10;Go for a run&#10;Read a chapter" rows="8"></textarea>
       <div class="btn-row">
-        <button id="btn-generate" class="btn-primary">Generate Schedule</button>
-        <button id="btn-reset" class="btn-ghost">Reset Day</button>
+        <button id="btn-generate" class="btn-primary">Build my schedule</button>
+        <button id="btn-reset" class="btn-ghost">Start over</button>
       </div>
     </section>
 
@@ -40,12 +43,12 @@
       <!-- Active + Next -->
       <div class="status-row">
         <div class="status-card" id="active-card">
-          <div class="status-label">▶ ACTIVE NOW</div>
+          <div class="status-label">Right now</div>
           <div class="status-task" id="active-task-name">—</div>
           <div class="status-timer" id="countdown">--:--</div>
         </div>
         <div class="status-card" id="next-card">
-          <div class="status-label">⏭ UP NEXT</div>
+          <div class="status-label">Next up</div>
           <div class="status-task" id="next-task-name">—</div>
           <div class="status-time" id="next-task-time">—</div>
         </div>
@@ -53,15 +56,15 @@
 
       <!-- Timetable -->
       <div class="card" id="timetable-card">
-        <h2>📅 Today's Schedule</h2>
+        <h2>Today's plan</h2>
         <div id="timetable"></div>
       </div>
 
-      <!-- End-of-day summary (hidden until triggered) -->
+      <!-- End-of-day summary -->
       <div class="card hidden" id="summary-card">
-        <h2>🏁 End of Day Summary</h2>
+        <h2>That's a wrap 🎉</h2>
         <div id="summary-content"></div>
-        <button id="btn-new-day" class="btn-primary" style="margin-top:1.5rem">Start New Day</button>
+        <button id="btn-new-day" class="btn-primary" style="margin-top:1.5rem">Plan tomorrow</button>
       </div>
 
     </section>
