@@ -276,9 +276,12 @@ async function loadSchedule() {
   try {
     const res  = await fetch(`${API}/tasks`);
     const data = await res.json();
-    if (data.tasks && data.tasks.length > 0) {
+    // Only restore dashboard if there's a valid dated schedule
+    if (data.date && data.tasks && data.tasks.length > 0) {
       schedule = data.tasks;
       showDashboard();
+    } else {
+      showInput(); // new day or fresh start — go to input
     }
   } catch {
     showToast('⚠️ Cannot reach server. Make sure it\'s running.', 6000);

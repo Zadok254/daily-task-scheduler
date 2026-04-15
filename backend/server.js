@@ -68,9 +68,9 @@ function writeData(data) {
 // GET current schedule
 app.get('/api/tasks', (req, res) => {
   const data = readData();
-  // Reset if it's a new day
+  // Auto-reset on new day
   if (data.date !== todayStr()) {
-    const fresh = { date: todayStr(), tasks: [] };
+    const fresh = { date: '', tasks: [] };
     writeData(fresh);
     return res.json(fresh);
   }
@@ -102,9 +102,9 @@ app.patch('/api/tasks/:id', (req, res) => {
   res.json(task);
 });
 
-// DELETE all tasks (reset day)
+// DELETE all tasks (reset — clears date so next POST starts fresh)
 app.delete('/api/tasks', (req, res) => {
-  const fresh = { date: todayStr(), tasks: [] };
+  const fresh = { date: '', tasks: [] };
   writeData(fresh);
   res.json(fresh);
 });
