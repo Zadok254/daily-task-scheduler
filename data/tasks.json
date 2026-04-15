@@ -1,0 +1,59 @@
+{
+  "date": "2026-04-15",
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Study control systems",
+      "start": "08:00",
+      "end": "09:00",
+      "startMinutes": 480,
+      "endMinutes": 540,
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "name": "Work on website",
+      "start": "09:10",
+      "end": "10:10",
+      "startMinutes": 550,
+      "endMinutes": 610,
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "name": "Exercise",
+      "start": "10:20",
+      "end": "11:20",
+      "startMinutes": 620,
+      "endMinutes": 680,
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "name": "Read a book",
+      "start": "11:30",
+      "end": "12:30",
+      "startMinutes": 690,
+      "endMinutes": 750,
+      "status": "pending"
+    },
+    {
+      "id": 5,
+      "name": "Review project notes",
+      "start": "12:40",
+      "end": "13:40",
+      "startMinutes": 760,
+      "endMinutes": 820,
+      "status": "pending"
+    },
+    {
+      "id": 6,
+      "name": "Plan tomorrow",
+      "start": "13:50",
+      "end": "14:50",
+      "startMinutes": 830,
+      "endMinutes": 890,
+      "status": "pending"
+    }
+  ]
+}

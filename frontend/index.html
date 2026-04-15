@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Task Scheduler</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="header-left">
+      <span class="logo">⬡ DTS</span>
+      <span class="tagline">Daily Task Scheduler</span>
+    </div>
+    <div class="header-right">
+      <span id="clock">00:00:00</span>
+      <span id="date-display"></span>
+    </div>
+  </header>
+
+  <!-- ── MAIN ── -->
+  <main>
+
+    <!-- INPUT PANEL -->
+    <section id="input-panel" class="card">
+      <h2>📋 Enter Today's Tasks</h2>
+      <p class="hint">One task per line · Max 8 tasks · Each slot = 1 hour</p>
+      <textarea id="task-input" placeholder="Study control systems&#10;Work on website&#10;Exercise&#10;Read a book" rows="8"></textarea>
+      <div class="btn-row">
+        <button id="btn-generate" class="btn-primary">Generate Schedule</button>
+        <button id="btn-reset" class="btn-ghost">Reset Day</button>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="hidden">
+
+      <!-- Active + Next -->
+      <div class="status-row">
+        <div class="status-card" id="active-card">
+          <div class="status-label">▶ ACTIVE NOW</div>
+          <div class="status-task" id="active-task-name">—</div>
+          <div class="status-timer" id="countdown">--:--</div>
+        </div>
+        <div class="status-card" id="next-card">
+          <div class="status-label">⏭ UP NEXT</div>
+          <div class="status-task" id="next-task-name">—</div>
+          <div class="status-time" id="next-task-time">—</div>
+        </div>
+      </div>
+
+      <!-- Timetable -->
+      <div class="card" id="timetable-card">
+        <h2>📅 Today's Schedule</h2>
+        <div id="timetable"></div>
+      </div>
+
+      <!-- End-of-day summary (hidden until triggered) -->
+      <div class="card hidden" id="summary-card">
+        <h2>🏁 End of Day Summary</h2>
+        <div id="summary-content"></div>
+        <button id="btn-new-day" class="btn-primary" style="margin-top:1.5rem">Start New Day</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
